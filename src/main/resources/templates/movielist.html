@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Movies</h1>
+	
+	  <table>
+	  
+		<tr>
+		    <th>title</th>
+		    <th>director</th>
+		     <th>actor</th>
+		      <th>year</th>
+		      <th>description</th>
+		    
+		</tr>  
+    	<tr th:each = "movie : ${movies}">
+    		<td th:text="${movie.title}"></td>
+    		<td th:text="${movie.director}"></td> 
+    		<td th:text="${movie.actor}"></td>
+    		<td th:text="${movie.year}"></td>
+    		<td th:text="${movie.description}"></td> 
+    		<td><a th:href="@{/delete/{id}(id=${movie.id})}">Delete</a></td> 		
+    	</tr>
+     </table>
+     
+     <a href="/add">Add Movie</a>
+	   
+</body>
+</html>
