@@ -13,6 +13,17 @@ import hh.swd20.moviedb.domain.MovieRepository;
 @Controller
 public class MovieController {
 	
+	@RequestMapping(value={"/", "/index"})
+	public String indexSecure() {
+		return "index";
+	}  
+    
+    
+    @RequestMapping(value="/login")
+	public String login() {
+		return "login";
+	}    
+	
 	@Autowired
 	private MovieRepository repository;
 	@RequestMapping(value="/movielist", method=RequestMethod.GET)
