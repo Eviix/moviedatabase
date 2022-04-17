@@ -12,7 +12,7 @@
 	<artifactId>moviedb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>moviedb</name>
-	<description>Demo project for Spring Boot</description>
+	<description>movie database</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
