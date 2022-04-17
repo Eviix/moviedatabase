@@ -3,6 +3,7 @@ package hh.swd20.moviedb.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,7 @@ import hh.swd20.moviedb.domain.User;
 import hh.swd20.moviedb.domain.UserRepository;
 
 @Service
-public class UserDetailServiceImpl {
+public class UserDetailServiceImpl implements UserDetailsService  {
 	private final UserRepository repository;
 
 	@Autowired
