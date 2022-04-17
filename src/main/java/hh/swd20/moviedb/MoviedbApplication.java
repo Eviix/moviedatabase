@@ -27,7 +27,7 @@ public class MoviedbApplication {
             repository.save(new Movie("La La Land", "Damien Chazelle", "Ryan Gosling", 
             		"While navigating their careers in Los Angeles, a pianist and an actress fall in love while attempting to reconcile their aspirations for the future.", 2016));
 			
-			log.info("fetch all books");
+			log.info("fetch all movies");
 			for (Movie movie : repository.findAll()) {
 				log.info(movie.toString());
 			}

@@ -22,9 +22,9 @@ public class MovieController {
 	   
 	    }
 	 
-	@RequestMapping(value = "/addmovie")
-	public String addMovie(Model model) {
-		model.addAttribute("book", new Movie());
+	@RequestMapping(value = "/add")
+	public String addmovie(Model model) {
+		model.addAttribute("movie", new Movie());
 		return "addmovie";
 
 	}
@@ -43,4 +43,12 @@ public class MovieController {
 	
 	}
 	
+	@RequestMapping(value = "/edit{id}", method = RequestMethod.GET)
+	public String editmovie(@PathVariable("id") Long movieId, Model model) {
+		model.addAttribute("movie", repository.findById(movieId));
+        return "editmovie";
+	
 }
+	
+}
+	
