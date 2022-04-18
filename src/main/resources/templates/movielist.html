@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <title>Getting Started: Handling Form Submission</title>
+    <title>Movie list page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
 	th:href="@{css/bootstrap.min.css}" />
@@ -38,6 +38,8 @@
 		     <th>actor</th>
 		      <th>year</th>
 		      <th>description</th>
+		       <th></th>
+		      <th sec:authorize="hasAuthority('ADMIN')"></th>
 		    
 		</tr>  
     	<tr th:each = "movie : ${movies}">
@@ -46,10 +48,8 @@
     		<td th:text="${movie.actor}"></td>
     		<td th:text="${movie.year}"></td>
     		<td th:text="${movie.description}"></td> 
-    		<td><a th:href="@{/delete/{id}(id=${movie.id})}" class="btn btn-danger">Delete</a></td> 
     		<td><a th:href="@{/edit{id}(id=${movie.id})}" class="btn btn-primary">Edit</a></td> 
-    		<th></th>
-		    		
+    		<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${movie.id})}" class="btn btn-danger">Delete</a></td> 
     	</tr>
      </table>
      

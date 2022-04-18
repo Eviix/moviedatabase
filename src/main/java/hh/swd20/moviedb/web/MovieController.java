@@ -1,11 +1,14 @@
 package hh.swd20.moviedb.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 
 import hh.swd20.moviedb.domain.Movie;
 import hh.swd20.moviedb.domain.MovieRepository;
@@ -24,6 +27,7 @@ public class MovieController {
 		return "login";
 	}    
 	
+    
 	@Autowired
 	private MovieRepository repository;
 	@RequestMapping(value="/movielist", method=RequestMethod.GET)
@@ -47,18 +51,17 @@ public class MovieController {
 
 	}
 	
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-	public String deletebook(@PathVariable("id") Long movieId, Model model) {
-    	repository.deleteById(movieId);
-        return "redirect:../movielist";
-	
-	}
-	
 	@RequestMapping(value = "/edit{id}", method = RequestMethod.GET)
 	public String editmovie(@PathVariable("id") Long movieId, Model model) {
 		model.addAttribute("movie", repository.findById(movieId));
         return "editmovie";
+	}      
 	
+	@PreAuthorize("hasAuthority('ADMIN')")
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	public String deletemovie(@PathVariable("id") Long movieId, Model model) {
+    	repository.deleteById(movieId);
+        return "redirect:../movielist";
 }
 	
 }
