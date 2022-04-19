@@ -37,9 +37,8 @@
 		    <th>Director</th>
 		     <th>Actor</th>
 		      <th>Release Year</th>
-		      <th>Genre</th>
 		      <th>Description</th>
-		      <th></th>
+		       <th></th>
 		      <th sec:authorize="hasAuthority('ADMIN')"></th>
 		    
 		</tr>  
@@ -48,7 +47,6 @@
     		<td th:text="${movie.director}"></td> 
     		<td th:text="${movie.actor}"></td>
     		<td th:text="${movie.year}"></td>
-    		<td th:text="${movie.genre.name}"></td> 
     		<td th:text="${movie.description}"></td> 
     		<td><a th:href="@{/edit{id}(id=${movie.id})}" class="btn btn-primary">Edit</a></td> 
     		<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${movie.id})}" class="btn btn-danger">Delete</a></td> 
