@@ -4,6 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import hh.swd20.moviedb.domain.Genre;
 
 @Entity
 public class Movie {
@@ -23,8 +29,15 @@ public class Movie {
 	private String actor;
 	private String description;
 	private int year;
+	
+    @ManyToOne
+	
+	@JsonIgnoreProperties ("movies") 
+	
+	@JoinColumn(name = "genreid")
+	private Genre genre;
 	 
-	public Movie(String title, String director, String actor, String description, int year) {
+	public Movie(String title, String director, String actor, String description, int year, Genre genre) {
 		
 		super();
 		this.title = title;
@@ -32,6 +45,7 @@ public class Movie {
 		this.actor = actor;
 		this.description = description;
 		this.year = year;
+		this.genre = genre;
 	
 	}
 	
@@ -70,10 +84,23 @@ public class Movie {
 		this.year = year;
 	}
 	
-	@Override
-	public String toString() {
-		return "Movie [id=" + id + " title=" + title + ", director=" + director + ", actor=" + actor + ", description="
-				+ description + ", year=" + year + "]";
+	public Genre getGenre() {
+		return genre;
+	}
+
+	public void setCategory(Genre genre) {
+		this.genre = genre;
 	}
 	
+	@Override
+	public String toString() {
+		if (this.genre != null) 
+		return "Movie [id=" + id + " title=" + title + ", director=" + director + ", actor=" + actor + ", description="
+				+ description + ", year=" + year + "category=" + this.getGenre() +"]";	
+		
+		else
+			return "Movie [id=" + id + " title=" + title + ", director=" + director + ", actor=" + actor + ", description="
+			+ description + ", year=" + year + "]";
+	}
+
 }

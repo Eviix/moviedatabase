@@ -59,6 +59,11 @@
              </div>
 			
 			<input type="submit" value="Save" class="btn btn-success"></input>
+			<label for="genrelist">Choose genre:</label>
+				<select id="genrelist" th:field="*{genre}">
+				  <option th:each="category: ${genres}" th:value="${genre.genreid}" th:text="${genre.name}"></option>
+				</select>
+				<div style="clear: both; display: block; height: 10px;"></div>
 		</form>
 	</div>
 	</div>
