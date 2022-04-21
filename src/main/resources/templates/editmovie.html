@@ -7,11 +7,12 @@
 	th:href="@{css/bootstrap.min.css}" />
 </head>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
-			<a class="navbar-brand" href="/movielist">Movie Database</a>
+			<a class="navbar-brand" href="/database">Movie & TV Show
+				Database</a>
 			<div class="collapse navbar-collapse" id="navbarColor02">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
-						<a class="nav-link" href="/movielist">Home
+						<a class="nav-link" href="/database">Home
 							<span class="sr-only">(current)</span>
 						</a>
 					</li>
@@ -25,12 +26,19 @@
 <div class="container">
 	<h1>Edit Movie</h1>
 	<div class="form-group">
-		<form class="form-horizontal" th:object="${movie}" th:action="@{save}" action="#" method="post">
-		<label for="id"></label> <input type="hidden" id="id"
+		<form class="form-horizontal" th:object="${movie}" th:action="@{savemovie}" action="#" method="post">
+		<label for="movieid"></label> 
+		<input type="hidden" id="id"
 				th:field="*{id}" />
 			 <div class="form-group">
         <label for="title">Title</label>
         <input id="title" placeholder="Movie Name" required type="text" th:field="*{title}"
+               class="form-control"/>
+             </div>
+             
+             <div class="form-group">
+        <label for="genre">Genre</label>
+        <input id="genre" placeholder="Movie genre" required type="text" th:field="*{genre}"
                class="form-control"/>
              </div>
 			
@@ -58,7 +66,7 @@
                class="form-control"/>
              </div>
              
-             <input type="submit" value="Save" class="btn btn-success"></input>
+             <input type="submit" value="Save movie" class="btn btn-success"></input>
 		</form>
 		<a href="/movielist" class="btn btn-secondary">Return</a>
 	</div>

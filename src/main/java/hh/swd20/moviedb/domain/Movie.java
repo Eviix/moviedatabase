@@ -19,15 +19,17 @@ public class Movie {
 	}
 	
 	private String title;
+	private String genre;
 	private String director;
 	private String actor;
 	private String description;
 	private int year;
 	 
-	public Movie(String title, String director, String actor, String description, int year) {
+	public Movie(String title, String genre, String director, String actor, String description, int year) {
 		
 		super();
 		this.title = title;
+		this.genre = genre;
 		this.director = director;
 		this.actor = actor;
 		this.description = description;
@@ -44,6 +46,12 @@ public class Movie {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
 	}
 	public String getDirector() {
 		return director;
@@ -72,7 +80,7 @@ public class Movie {
 	
 	@Override
 	public String toString() {
-		return "Movie [id=" + id + " title=" + title + ", director=" + director + ", actor=" + actor + ", description="
+		return "Movie [id=" + id + " title=" + title + ", genre=" + genre + ", director=" + director + ", actor=" + actor + ", description="
 				+ description + ", year=" + year + "]";
 	}
 	

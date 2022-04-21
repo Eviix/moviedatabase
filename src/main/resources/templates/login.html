@@ -13,16 +13,20 @@
     </nav>
     <div class="container">
     
-      <div th:if="${param.error}">Invalid username and password.</div>
-      <div th:if="${param.logout}">You have been logged out.</div>
-      <br />
-      
-      
-        <form th:action="@{/login}" method="post">
-        <div class="form-group">
-            <div><label> User Name : <input type="text" name="username"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
-            <div><input type="submit" value="Sign In"/></div>
+ 
+    <h1>Please sign in</h1>
+     <div th:if="${param.error}">Invalid username and password.</div>
+		<div th:if="${param.logout}">You have been logged out.</div>
+			<form th:action="@{/login}" method="post">
+				<div>
+					<input id="logininput" type="text" name="username" class="form-control" placeholder="Username"/>
+				</div>
+				<div>
+					<input id="logininput" type="password" name="password" class="form-control" placeholder="Password"/>
+				</div>
+				<div>
+					<input type="submit" value="Sign In" class="btn btn-lg btn-primary btn-block" id="login" />
+				</div>
             
         </div>
         </form>

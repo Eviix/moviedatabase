@@ -15,52 +15,40 @@ import hh.swd20.moviedb.domain.MovieRepository;
 
 @Controller
 public class MovieController {
-	
-	@RequestMapping(value={"/", "/index"})
-	public String indexSecure() {
-		return "index";
-	}  
-    
-    
-    @RequestMapping(value="/login")
-	public String login() {
-		return "login";
-	}    
-	
     
 	@Autowired
-	private MovieRepository repository;
+	private MovieRepository movierepository;
 	@RequestMapping(value="/movielist", method=RequestMethod.GET)
 	public String Movies(Model model) {
-		model.addAttribute("movies", repository.findAll());
+		model.addAttribute("movies", movierepository.findAll());
 	    return "movielist";
 	   
 	    }
 	 
-	@RequestMapping(value = "/add")
+	@RequestMapping(value = "/addmovie")
 	public String addmovie(Model model) {
 		model.addAttribute("movie", new Movie());
 		return "addmovie";
 
 	}
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/savemovie", method = RequestMethod.POST)
 	public String save(Movie movie) {
-		repository.save(movie);
+		movierepository.save(movie);
 		return "redirect:movielist";
 
 	}
 	
 	@RequestMapping(value = "/edit{id}", method = RequestMethod.GET)
 	public String editmovie(@PathVariable("id") Long movieId, Model model) {
-		model.addAttribute("movie", repository.findById(movieId));
+		model.addAttribute("movie", movierepository.findById(movieId));
         return "editmovie";
 	}      
 	
 	@PreAuthorize("hasAuthority('ADMIN')")
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/moviedelete/{id}", method = RequestMethod.GET)
 	public String deletemovie(@PathVariable("id") Long movieId, Model model) {
-    	repository.deleteById(movieId);
+    	movierepository.deleteById(movieId);
         return "redirect:../movielist";
 }
 	

@@ -19,9 +19,9 @@
 							<ul class="nav nav-pills">
 								<li class="nav-item"><a class="nav-link"
 									href="/database">Home</a></li>
-								<li class="nav-item"><a class="nav-link active" href="/movielist">Movie
+								<li class="nav-item"><a class="nav-link" href="/movielist">Movie
 										List</a></li>
-								<li class="nav-item"><a class="nav-link" href="/tvshowlist">TV
+								<li class="nav-item"><a class="nav-link active" href="/tvshowlist">TV
 										Show List</a></li>
 							</ul>
 						</nav>
@@ -31,9 +31,10 @@
 					<button type="submit" class="btn btn-secondary my-2 my-sm-0">Logout</button>
 				</form>
 			</div>
-		</nav> 
+		</nav>
+
 		<div class="container">
-			<h2>Movies</h2>
+			<h2>TV Shows</h2>
 			<table class="table table-striped">
 
 	  
@@ -41,27 +42,31 @@
 		<tr>
 		    <th>Title</th>
 		    <th>Genre</th>
-		    <th>Director</th>
+		    <th>Creator</th>
 		     <th>Actor</th>
+		     <th>Seasons</th>
+		     <th>Status</th>
 		      <th>Release Year</th>
 		      <th>Description</th>
 		       <th></th>
 		      <th sec:authorize="hasAuthority('ADMIN')"></th>
 		    
 		</tr>  
-    	<tr th:each = "movie : ${movies}">
-    		<td th:text="${movie.title}"></td>
-    		<td th:text="${movie.genre}"></td>
-    		<td th:text="${movie.director}"></td> 
-    		<td th:text="${movie.actor}"></td>
-    		<td th:text="${movie.year}"></td>
-    		<td th:text="${movie.description}"></td> 
-    		<td><a th:href="@{/edit{id}(id=${movie.id})}" class="btn btn-primary">Edit</a></td> 
-    		<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/moviedelete/{id}(id=${movie.id})}" class="btn btn-danger">Delete</a></td> 
+    	<tr th:each = "tvshow : ${tvshows}">
+    		<td th:text="${tvshow.title}"></td>
+    		<td th:text="${tvshow.genre}"></td> 
+    		<td th:text="${tvshow.creator}"></td>
+    		<td th:text="${tvshow.actor}"></td>
+    		<td th:text="${tvshow.season}"></td>
+    		<td th:text="${tvshow.status}"></td>
+    		<td th:text="${tvshow.year}"></td>
+    		<td th:text="${tvshow.description}"></td> 
+    		<td><a th:href="@{/tvshowedit{id}(id=${tvshow.id})}" class="btn btn-primary">Edit</a></td> 
+    		<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${tvshow.id})}" class="btn btn-danger">Delete</a></td> 
     	</tr>
      </table>
      
-     <a href="/addmovie" class="btn btn-success">Add Movie</a>
+     <a href="/addtvshow" class="btn btn-success">Add TV Show</a>
      
      </div>
 	</div>

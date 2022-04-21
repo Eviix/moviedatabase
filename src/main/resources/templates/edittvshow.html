@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Edit TV Show</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+</head>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
+			<a class="navbar-brand" href="/database">Movie & TV Show
+				Database</a>
+			<div class="collapse navbar-collapse" id="navbarColor02">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="/database">Home
+							<span class="sr-only">(current)</span>
+						</a>
+					</li>
+				</ul>
+				
+				<form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
+					<button type="submit" class="btn btn-secondary my-2 my-sm-0">Logout</button>
+				</form>
+			</div>
+		</nav>
+<div class="container">
+	<h1>Edit TV Show</h1>
+	<div class="form-group">
+		<form class="form-horizontal" th:object="${tvshow}" th:action="@{savetvshow}" action="#" method="post">
+		<label for="tvshowid"></label> <input type="hidden" id="id"
+				th:field="*{id}" />
+			 <div class="form-group">
+        <label for="title">Title</label>
+        <input id="title" placeholder="TV show Name" required type="text" th:field="*{title}"
+               class="form-control"/>
+             </div>
+			
+			 <div class="form-group">
+        <label for="creator">Creator</label>
+        <input id="creator" placeholder="TV Show Creator" required type="text" th:field="*{creator}"
+               class="form-control"/>
+             </div>
+			
+			<div class="form-group">
+        <label for="actor">Actor</label>
+        <input id="actor" placeholder="TV Show Cast" required type="text" th:field="*{actor}"
+               class="form-control"/>
+             </div>
+             
+             <div class="form-group">
+        <label for="season">Seasons</label>
+        <input id="season" placeholder="Amount of seasons" required type="number" th:field="*{season}"
+               class="form-control"/>
+             </div>
+             
+             <div class="form-group">
+        <label for="genre">Genre</label>
+        <input id="genre" placeholder="Genre of TV Show" required type="text" th:field="*{genre}"
+               class="form-control"/>
+             </div>
+			
+			<div class="form-group">
+        <label for="year">Release Year</label>
+        <input id="year" placeholder="TV Show Release Year" required type="number" th:field="*{year}"
+               class="form-control"/>
+             </div>
+			
+				<div class="form-group">
+        <label for="description">Description</label>
+        <input id="description" placeholder="TV Show Description" required type="text" th:field="*{description}"
+               class="form-control"/>
+             </div>
+             
+             <input type="submit" value="Save show" class="btn btn-success"></input>
+             <label for="genre">TV show status</label>
+				<select id="categorylist" th:field="*{status}">
+				   <option th:value="'Ongoing'" th:text="Ongoing"></option>
+                   <option th:value="'Ended'" th:text="Ended"></option>
+				</select>
+		</form>
+		<a href="/tvshowlist" class="btn btn-secondary">Return</a>
+	</div>
+	</div>
+</body>
+</html>

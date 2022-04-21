@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title>Movie list page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+
+	<div>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
+			<a class="navbar-brand" href="/database">Movie & TV Show
+				Database</a>
+			<div class="collapse navbar-collapse" id="navbarColor02">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<nav class="nav nav-pills flex-column flex-sm-row">
+							<ul class="nav nav-pills">
+								<li class="nav-item"><a class="nav-link active"
+									href="/database">Home</a></li>
+								<li class="nav-item"><a class="nav-link" href="/movielist">Movie
+										List</a></li>
+								<li class="nav-item"><a class="nav-link" href="/tvshowlist">TV
+										Show List</a></li>
+							</ul>
+						</nav>
+				</ul>
+
+				<form class="form-inline my-2 my-lg-0" th:action="@{/logout}"
+					method="post">
+					<button type="submit" class="btn btn-secondary my-2 my-sm-0">Logout</button>
+				</form>
+			</div>
+		</nav>
+		<h3 th:inline="text">Welcome
+			[[${#httpServletRequest.remoteUser}]]</h3>
+		<div class="container">
+			<h1>Database for movies and TV shows</h1>
+			<br>
+			<h2>Movies</h2>
+			<table class="table table-striped">
+
+
+
+				<tr>
+					<th>Title</th>
+					<th>Genre</th>
+					<th>Director</th>
+					<th>Actor</th>
+					<th>Release Year</th>
+					<th>Description</th>
+					<th></th>
+					<th sec:authorize="hasAuthority('ADMIN')"></th>
+
+				</tr>
+				<tr th:each="movie : ${movies}">
+					<td th:text="${movie.title}"></td>
+					<td th:text="${movie.genre}"></td>
+					<td th:text="${movie.director}"></td>
+					<td th:text="${movie.actor}"></td>
+					<td th:text="${movie.year}"></td>
+					<td th:text="${movie.description}"></td>
+					<td><a th:href="@{/edit{id}(id=${movie.id})}"
+						class="btn btn-primary">Edit</a></td>
+					<td sec:authorize="hasAuthority('ADMIN')"><a
+						th:href="@{/moviedelete/{id}(id=${movie.id})}"
+						class="btn btn-danger">Delete</a></td>
+				</tr>
+			</table>
+
+			<div class="container">
+				<h2>TV Shows</h2>
+				<table class="table table-striped">
+
+
+
+					<tr>
+						<th>Title</th>
+						<th>Genre</th>
+						<th>Creator</th>
+						<th>Actor</th>
+						<th>Seasons</th>
+						<th>Status</th>
+						<th>Release Year</th>
+						<th>Description</th>
+						<th></th>
+						<th sec:authorize="hasAuthority('ADMIN')"></th>
+
+					</tr>
+					<tr th:each="tvshow : ${tvshows}">
+						<td th:text="${tvshow.title}"></td>
+						<td th:text="${tvshow.genre}"></td>
+						<td th:text="${tvshow.creator}"></td>
+						<td th:text="${tvshow.actor}"></td>
+						<td th:text="${tvshow.season}"></td>
+						<td th:text="${tvshow.status}"></td>
+						<td th:text="${tvshow.year}"></td>
+						<td th:text="${tvshow.description}"></td>
+						<td><a th:href="@{/tvshowedit{id}(id=${tvshow.id})}"
+							class="btn btn-primary">Edit</a></td>
+						<td sec:authorize="hasAuthority('ADMIN')"><a
+							th:href="@{/delete/{id}(id=${tvshow.id})}" class="btn btn-danger">Delete</a></td>
+					</tr>
+				</table>
+
+
+			</div>
+
+			<div>
+				<a href="/addmovie" class="btn btn-success">Add Movie</a> <a
+					href="/addtvshow" class="btn btn-success">Add TV Show</a>
+			</div>
+
+		</div>
+	</div>
+
+</body>
+</html>
