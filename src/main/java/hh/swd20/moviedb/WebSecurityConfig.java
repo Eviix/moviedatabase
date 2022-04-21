@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	  .formLogin()
 	  		//Login page and default place for login
 	  		.loginPage("/login")
-	  		.defaultSuccessUrl("/movielist", true)
+	  		.defaultSuccessUrl("/database", true)
 	  		.permitAll()
 	  		.and()
 	  .logout()

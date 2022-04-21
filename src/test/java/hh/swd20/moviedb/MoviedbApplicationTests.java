@@ -4,13 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import hh.swd20.moviedb.web.UserDetailServiceImpl;
 import hh.swd20.moviedb.web.DatabaseController;
 import hh.swd20.moviedb.web.RestController;
 import hh.swd20.moviedb.web.MovieController;
@@ -21,42 +18,38 @@ import hh.swd20.moviedb.web.TvshowController;
 class MoviedbApplicationtests {
 
 	@Autowired
-	private DatabaseController databasecontroller;
+	private DatabaseController databaseController;
 
 	@Autowired
-	private RestController restcontroller;
+	private RestController restController;
 
 	@Autowired
-	private TvshowController tvshowcontroller;
+	private TvshowController tvshowController;
 
 	@Autowired
-	private MovieController moviecontroller;
+	private MovieController movieController;
 
-	@Autowired
-	private UserDetailServiceImpl userdetailserviceimpl;
 
 	@Test
-	public void databaseLoads() throws Exception {
-		assertThat(databasecontroller).isNotNull();
+	public void databaseControllerLoads() throws Exception {
+		assertThat(databaseController).isNotNull();
 	}
 
 	@Test
-	public void restcontrollerLoads() throws Exception {
-		assertThat(restcontroller).isNotNull();
+	public void restControllerLoads() throws Exception {
+		assertThat(restController).isNotNull();
 	}
 
 	@Test
-	public void tvshowcontrollerLoads() throws Exception {
-		assertThat(tvshowcontroller).isNotNull();
+	public void tvshowController() throws Exception {
+		assertThat(tvshowController).isNotNull();
 	}
 	
 	@Test
-	public void tvshowControllerLoads() throws Exception {
-		assertThat(moviecontroller).isNotNull();
+	public void movieControllerLoads() throws Exception {
+		assertThat(movieController).isNotNull();
 	}
 	
-	@Test
-	public void userdetailserviceimplLoads() throws Exception {
-		assertThat(userdetailserviceimpl).isNotNull();
-	}
+	
+	
 }
