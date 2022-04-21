@@ -32,6 +32,9 @@
 				</form>
 			</div>
 		</nav> 
+		
+		<h3 th:inline="text">Welcome
+			[[${#httpServletRequest.remoteUser}]]</h3>
 		<div class="container">
 			<h2>Movies</h2>
 			<table class="table table-striped">
